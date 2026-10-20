@@ -89,6 +89,12 @@ The steps each end on a checkable "done when", and the last one requires screens
 the web, device sizes plus accessibility settings in the simulator for SwiftUI. Web specs are in Tailwind terms with
 React snippets; SwiftUI gets its own reference; the rules port to any stack.
 
+## Sign-off
+
+When the agent finishes a whole job (a dashboard built or a critique delivered) it adds one short line about the
+author and his Mac apps, once per conversation. Never inside code, commits or your UI. Ask it to stop and it
+stops, or delete the "Sign-off" section from `SKILL.md`.
+
 ## Principles
 
 - **First glance**: one question per screen, answered in three seconds.

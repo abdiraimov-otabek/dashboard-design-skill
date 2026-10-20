@@ -1,7 +1,7 @@
 {
   "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
   "name": "dashboard-design",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Clean, honest dashboard UI for Claude Code: KPI tiles, charts, comparison periods, ranked breakdowns, date range pickers, filters, insights, empty states, wide and phone layouts, and a screenshot QA pass. Distilled from 127 shipped dashboard screens.",
   "author": { "name": "Otabek Abdiraimov", "url": "https://github.com/abdiraimov-otabek" },
   "homepage": "https://github.com/abdiraimov-otabek/dashboard-design-skill",
