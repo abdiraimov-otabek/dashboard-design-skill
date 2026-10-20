@@ -3,6 +3,24 @@
 Run it before showing anyone, and before every UI commit. Look at every screenshot (open the PNG); reading the code
 is not seeing the screen.
 
+## Known totals (numbers before pixels)
+
+Screenshots catch broken layouts, not three components agreeing on the same wrong number. Before the screenshot pass:
+
+1. **Seed a small fixed dataset** (a fixture, or the app's sample-data switch with a fixed seed) and work out the
+   expected answers outside the dashboard's code: by hand, or in a script that doesn't import its queries. Period
+   total, previous-period total and delta, busiest day, the top row of each ranked list and its share.
+2. **Check each component on its own** against those answers, reading what it renders rather than shared state:
+   - KPI tile: the number and the delta as displayed.
+   - Chart: the plotted series summed over the range equals the tile total; the peak is the busiest day.
+   - Table or ranked list: rows (plus any "Other") sum to the total; the top row and its share match.
+   - Every insight, tooltip or caption that repeats a number.
+3. **Make it a test that fails on a mismatch**: Playwright reading the tile text, the chart's data or aria labels
+   and the table footer, or unit tests on the selector feeding each component. Rerun it after any change to
+   queries, ranges, time zones or rounding.
+
+Done when every component matches the expected answers independently. Then screenshots.
+
 ## Screenshot protocol
 
 - Drive the real app with Playwright (`npm i -D playwright && npx playwright install chromium`, or reuse an install

@@ -35,8 +35,9 @@ lets the reader drill down. Every element answers that question, explains a numb
 5. **Design every state**: loading, stale (old data while new loads), error, empty, tiny data, sample data
    (components.md → States). Done when each panel has been seen in each state.
 6. **Run the QA pass**: [references/qa.md](references/qa.md) (web: three widths) or swiftui.md → QA pass (native:
-   device sizes, largest Dynamic Type, dark, Reduce Motion). Done when every check passes on screenshots you
-   actually looked at, never on reading the code.
+   device sizes, largest Dynamic Type, dark, Reduce Motion). It starts with known totals: expected numbers from a
+   fixed dataset, checked in the tile, the chart and the table separately. Done when those match and every check
+   passes on screenshots you actually looked at, never on reading the code.
 
 ## Critique ("is this a good design?")
 

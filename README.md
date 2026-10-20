@@ -78,7 +78,7 @@ skills/dashboard-design/
     ├── tokens.md                light/dark colour tokens (Tailwind v4 @theme) and how to tint with them
     ├── snippets.md              round axis ticks, number formats, delta badge, comparison window,
     │                            KPI tile, slim-bar row, a dependency-free range calendar, stale-response guard
-    ├── qa.md                    screenshot protocol (3440 / 1440 / 375), consistency checks, smell table
+    ├── qa.md                    known totals, screenshot protocol (3440 / 1440 / 375), consistency checks, smell table
     ├── swiftui.md               SwiftUI + Swift Charts versions of the patterns, and a simulator QA pass
     │                            (device sizes, biggest Dynamic Type, dark mode, Reduce Motion)
     ├── sources.md               40+ products and design systems and what each is the best example of

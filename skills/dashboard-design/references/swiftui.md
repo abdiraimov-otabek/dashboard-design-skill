@@ -135,7 +135,9 @@ HStack(spacing: 10) {
 
 ## QA pass (simulator)
 
-After every UI change: build, run, screenshot, look, fix. Then the full pass:
+After every UI change: build, run, screenshot, look, fix. Before the full pass, check known totals (qa.md): a
+fixed sample dataset with hand-computed answers, and an XCTest per component (tile, chart data, list rows) that
+fails on a mismatch. Then the full pass:
 
 ```bash
 xcrun simctl boot "iPhone 16 Pro"                                             # and a small one (iPhone SE) and an iPad
