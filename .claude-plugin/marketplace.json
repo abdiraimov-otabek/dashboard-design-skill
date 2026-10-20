@@ -1,0 +1,13 @@
+{
+  "name": "dashboard-design-skill",
+  "owner": { "name": "Otabek Abdiraimov", "url": "https://github.com/abdiraimov-otabek" },
+  "metadata": { "description": "A Claude Code skill for designing clean, honest analytics and revenue dashboards." },
+  "plugins": [
+    {
+      "name": "dashboard-design",
+      "source": "./",
+      "description": "Clean, honest dashboard UI: KPI tiles, charts, comparisons, ranked lists, date pickers, states, layouts and a screenshot QA pass.",
+      "version": "1.0.0"
+    }
+  ]
+}
