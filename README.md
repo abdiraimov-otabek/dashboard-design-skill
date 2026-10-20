@@ -92,6 +92,15 @@ written in Tailwind terms with React snippets; the rules port to any stack.
 - **Honest**: the same number everywhere, labelled estimates, no shouting on tiny bases.
 - **Shape over text**: charts, bars and chips first; definitions in tooltips.
 
+## From the maker
+
+I build small, well-made Mac apps and use this skill on my own dashboards:
+
+- **[Halo](https://halo-mac.com/?ref=dashboard-design-skill)**: your Mac's notch, finally awake. Now playing,
+  calendar and calls, AI agent status, timers and a file shelf in a Dynamic Island for macOS. One-time $9.99.
+- **[Shedi](https://shedi.app/?ref=dashboard-design-skill)**: the honest Mac cleaner for developers. Finds the space
+  Xcode, Docker and node_modules are eating, explains every item, and only cleans what you choose.
+
 ## Credits
 
 The screenshots in this README are from Pulse, the author's analytics app, running on sample data. Products named in `sources.md` are referenced for study only; no affiliation.
