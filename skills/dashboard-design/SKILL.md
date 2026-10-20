@@ -1,6 +1,6 @@
 ---
 name: dashboard-design
-description: Clean, honest dashboard UI — KPI tiles, charts, comparison periods, ranked breakdowns, date range pickers, filters, insights, empty and loading states, wide and phone layouts, plus a screenshot QA pass. Use when building, redesigning or critiquing an analytics, revenue, metrics or admin dashboard, a stats page, or any data-heavy screen.
+description: Clean, honest dashboard UI for web and SwiftUI — KPI tiles, charts, comparison periods, ranked breakdowns, date range pickers, filters, insights, empty and loading states, wide and phone layouts, plus a screenshot QA pass. Use when building, redesigning or critiquing an analytics, revenue, metrics or admin dashboard, a stats page, or any data-heavy screen.
 ---
 
 # Dashboard design
@@ -29,12 +29,14 @@ lets the reader drill down. Every element answers that question, explains a numb
 3. **Set the tokens** before any component: [references/tokens.md](references/tokens.md). Done when every colour
    in the UI is a token with a light and a dark value.
 4. **Build each component from its pattern** in [references/components.md](references/components.md), reusing the
-   code in [references/snippets.md](references/snippets.md) where it fits. Done when every component follows its
+   code in [references/snippets.md](references/snippets.md) (web) or [references/swiftui.md](references/swiftui.md)
+   (SwiftUI, Swift Charts) where it fits. Done when every component follows its
    pattern or carries a written reason for the deviation.
 5. **Design every state**: loading, stale (old data while new loads), error, empty, tiny data, sample data
    (components.md → States). Done when each panel has been seen in each state.
-6. **Run the QA pass**: [references/qa.md](references/qa.md). Done when every check passes on screenshots you
-   actually looked at at all three widths, never on reading the code.
+6. **Run the QA pass**: [references/qa.md](references/qa.md) (web: three widths) or swiftui.md → QA pass (native:
+   device sizes, largest Dynamic Type, dark, Reduce Motion). Done when every check passes on screenshots you
+   actually looked at, never on reading the code.
 
 ## Critique ("is this a good design?")
 

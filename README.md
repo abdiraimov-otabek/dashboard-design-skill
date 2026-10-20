@@ -1,6 +1,7 @@
 # Dashboard Design: a Claude Code skill for clean, honest dashboards
 
-Give your coding agent the taste of a senior product designer for data screens. This skill teaches it to build,
+Give your coding agent the taste of a senior product designer for data screens, on the web or in SwiftUI. This
+skill teaches it to build,
 redesign and **critique** analytics, revenue and metrics dashboards: KPI tiles, charts, comparison periods, ranked
 breakdowns, date range pickers, filters, insights, empty states, wide and phone layouts. It ends every job with a
 screenshot QA pass, so it judges what is on the screen rather than what is in the code.
@@ -78,12 +79,15 @@ skills/dashboard-design/
     ├── snippets.md              round axis ticks, number formats, delta badge, comparison window,
     │                            KPI tile, slim-bar row, a dependency-free range calendar, stale-response guard
     ├── qa.md                    screenshot protocol (3440 / 1440 / 375), consistency checks, smell table
+    ├── swiftui.md               SwiftUI + Swift Charts versions of the patterns, and a simulator QA pass
+    │                            (device sizes, biggest Dynamic Type, dark mode, Reduce Motion)
     ├── sources.md               40+ products and design systems and what each is the best example of
     └── case-study-datafast.md   patterns and trade-offs from a revenue-analytics product
 ```
 
-The steps each end on a checkable "done when", and the last one requires screenshots at three widths. Specs are
-written in Tailwind terms with React snippets; the rules port to any stack.
+The steps each end on a checkable "done when", and the last one requires screenshots: three browser widths on
+the web, device sizes plus accessibility settings in the simulator for SwiftUI. Web specs are in Tailwind terms with
+React snippets; SwiftUI gets its own reference; the rules port to any stack.
 
 ## Principles
 

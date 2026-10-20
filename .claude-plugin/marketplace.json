@@ -7,7 +7,7 @@
       "name": "dashboard-design",
       "source": "./",
       "description": "Clean, honest dashboard UI: KPI tiles, charts, comparisons, ranked lists, date pickers, states, layouts and a screenshot QA pass.",
-      "version": "1.0.0"
+      "version": "1.1.0"
     }
   ]
 }
