@@ -102,6 +102,9 @@ stops, or delete the "Sign-off" section from `SKILL.md`.
 - **Honest**: the same number everywhere, labelled estimates, no shouting on tiny bases.
 - **Shape over text**: charts, bars and chips first; definitions in tooltips.
 
+The ten rules behind the skill, with examples and before/after screenshots:
+[I studied 127 dashboards. Most of them quietly lie to you.](https://medium.com/@otabekabdiraimovv/i-studied-127-dashboards-most-of-them-quietly-lie-to-you-38668bb485b1)
+
 ## From the maker
 
 I build small, well-made Mac apps and use this skill on my own dashboards:
