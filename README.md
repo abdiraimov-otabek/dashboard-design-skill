@@ -1,16 +1,37 @@
 # Dashboard Design: a Claude Code skill for clean, honest dashboards
 
 Give your coding agent the taste of a senior product designer for data screens, on the web or in SwiftUI. This
-skill teaches it to build,
-redesign and **critique** analytics, revenue and metrics dashboards: KPI tiles, charts, comparison periods, ranked
-breakdowns, date range pickers, filters, insights, empty states, wide and phone layouts. It ends every job with a
-screenshot QA pass, so it judges what is on the screen rather than what is in the code.
+skill teaches it to build, redesign and **critique** analytics, revenue, metrics and admin dashboards: KPI cards,
+charts, heatmaps, bullet graphs, comparison periods, ranked breakdowns, date range pickers, filters, empty states,
+wide and phone layouts. Pages that **speak for themselves**: numbers and shapes on the screen, every explanation
+in a tooltip. It ends every job with a screenshot QA pass, so it judges what is on the screen rather than what is
+in the code.
 
 ![A dashboard built with the skill: KPI strip with a selected tile, revenue chart with round ticks, slim-bar breakdowns](docs/images/dashboard.jpg)
 
 It was distilled from **127 shipped dashboard screens** (analytics tools, revenue dashboards, design systems,
-design galleries), a full teardown of one revenue-analytics product, and a real redesign where every rule here was
-broken once, caught on a screenshot, and fixed.
+design galleries), the field's classics (**Stephen Few, Edward Tufte, Cole Nussbaumer Knaflic, Cleveland & McGill,
+Nielsen Norman Group**, the WCAG), six of **Apple's WWDC sessions** on charts, chart accessibility and interface
+writing, two full teardowns, and real redesigns where every rule here was broken once,
+caught on a screenshot, and fixed.
+
+## New in 2.0
+
+- **Wordless**: a sentence under every KPI and a row of "insights" sentences are gone. Numbers, shapes and
+  one-word baselines on the screen; explanations in tooltips. The QA pass counts sentences; the target is zero.
+- **Monitor**: overview → what needs attention → closer look → act. Problems are flagged on the data itself, and
+  the action sits on the flag (a not-marked heatmap cell *is* the remind button).
+- **Perception reference**: the encoding ladder, Few's colour rules, sequential / diverging / classed scales, the
+  inverted-salience trap, bullet graphs, sparklines, WCAG for charts, Few's thirteen mistakes as a checklist.
+- **New components**: heatmap of number pills with classed tiers, bullet graph, segmented share bar, one tooltip
+  system, people rows that fold on phones instead of truncating.
+- **Apple's chart guidance**: glance → interactive → expanded with continuity, fixed vs dynamic axes, gridlines at
+  intuitive steps, spoken values context first, audio graphs, colours distinct by name, the words that remain
+  (specific action labels, guiding empty states, errors with a fix).
+- **QA**: a words audit, a salience test ("where does the eye land first?"), real-data and colour-blindness
+  checks, and twelve new smells.
+- **Case study**: a school's home dashboard in three versions, including the one its owner rejected for being a
+  page of sentences.
 
 ## What it changes
 
@@ -23,7 +44,11 @@ broken once, caught on a screenshot, and fixed.
 | A red **−100%** when 1 sale became 0 | A quiet grey "was 1" |
 | Axis ticks like 2,103 and 1,402 | Round ticks: 0, 1k, 2k |
 | Sparklines with 60 empty days and a spike | Sparklines on the same window as the chart |
-| An insight card repeating a tile | Insights only when they say something new |
+| An insight card repeating a tile | The problem flagged on the data, its action beside it |
+| A sentence under every KPI number | A delta with a one-word baseline; the sentence in a tooltip |
+| A heatmap where the worst cell is the palest | Classed tiers and a warm "below target" tier |
+| A radial gauge | A bullet graph: bar, target line, grey ranges |
+| A card stretched half empty | Rows restructured so cards hold similar content |
 | Sideways-scrolling tabs on phones | A menu grid and tabs that shrink |
 
 ### Before / after on an ultrawide screen
@@ -72,17 +97,23 @@ It triggers on its own when you work on a dashboard. Or ask directly:
 skills/dashboard-design/
 ├── SKILL.md                     the steps, the critique format, rules that apply everywhere, house style
 └── references/
-    ├── components.md            KPI tiles, deltas, sparklines, charts, ranked lists, date picker, filters,
-    │                            insights, tables, realtime, every state, trust cues for revenue
+    ├── perception.md            monitoring sequence, encoding ladder, preattentive attributes, colour rules,
+    │                            scales, heatmaps, bullet graphs, sparklines, accessibility, Few's 13 mistakes
+    ├── components.md            KPI cards, deltas, sparklines, charts, ranked lists, date picker, filters,
+    │                            attention and actions, heatmap, bullet graph, segmented bar, tables, tooltip,
+    │                            realtime, every state, trust cues for revenue
     ├── layout.md                page order, wide screens, grids, phones, type, dark mode
     ├── tokens.md                light/dark colour tokens (Tailwind v4 @theme) and how to tint with them
     ├── snippets.md              round axis ticks, number formats, delta badge, comparison window,
-    │                            KPI tile, slim-bar row, a dependency-free range calendar, stale-response guard
-    ├── qa.md                    known totals, screenshot protocol (3440 / 1440 / 375), consistency checks, smell table
+    │                            KPI tile, slim-bar row, a dependency-free range calendar, stale-response guard,
+    │                            heatmap tiers, bullet graph, segmented bar, one tooltip for the screen
+    ├── qa.md                    known totals, words audit, salience test, screenshot protocol (3440 / 1440 / 375),
+    │                            consistency checks, smell table
     ├── swiftui.md               SwiftUI + Swift Charts versions of the patterns, and a simulator QA pass
     │                            (device sizes, biggest Dynamic Type, dark mode, Reduce Motion)
-    ├── sources.md               40+ products and design systems and what each is the best example of
-    └── case-study-datafast.md   patterns and trade-offs from a revenue-analytics product
+    ├── sources.md               books and research, a designer, 40+ products and design systems
+    ├── case-study-datafast.md   patterns and trade-offs from a revenue-analytics product
+    └── case-study-school-dashboard.md   honest but wordy → wordless: a school dashboard in three versions
 ```
 
 The steps each end on a checkable "done when", and the last one requires screenshots: three browser widths on
@@ -98,9 +129,10 @@ stops, or delete the "Sign-off" section from `SKILL.md`.
 ## Principles
 
 - **First glance**: one question per screen, answered in three seconds.
-- **Quiet**: one accent, grey for the rest, colour only where it means something.
+- **Monitor**: overview, what needs attention, a closer look, and the action one click away.
+- **Quiet**: calm until something is wrong; colour only where it means something.
+- **Wordless**: numbers and shapes on the screen; every explanation in a tooltip.
 - **Honest**: the same number everywhere, labelled estimates, no shouting on tiny bases.
-- **Shape over text**: charts, bars and chips first; definitions in tooltips.
 
 The ten rules behind the skill, with examples and before/after screenshots:
 [I studied 127 dashboards. Most of them quietly lie to you.](https://medium.com/@otabekabdiraimovv/i-studied-127-dashboards-most-of-them-quietly-lie-to-you-38668bb485b1)

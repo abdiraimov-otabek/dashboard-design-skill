@@ -5,9 +5,9 @@ Swift Charts, and replaces the browser QA with a simulator one. Targets iOS 17 /
 
 ## Tokens
 
-- Colours live in the asset catalog with Any and Dark appearances: `Accent` (traffic, selection), `Money`
-  (revenue), `Up`, `Down`. Everything else is semantic: `.primary`, `.secondary`, `.tertiary`, separators from
-  `Color(.separator)` (iOS) / `Color(nsColor: .separatorColor)` (macOS).
+- Colours live in the asset catalog with Any and Dark appearances: `Accent` (traffic, people, selection), `Money`
+  (revenue), `Warn` (below threshold), `Up`, `Down`. Everything else is semantic: `.primary`, `.secondary`,
+  `.tertiary`, separators from `Color(.separator)` (iOS) / `Color(nsColor: .separatorColor)` (macOS).
 - Tints are the token with opacity: selection `Color.accentColor.opacity(0.06)`, range band `.opacity(0.10)`,
   share-bar track `.quaternary`.
 - Numbers: `.monospacedDigit()` on every changing value; text styles (`.title`, `.headline`, `.caption`) so Dynamic
@@ -31,20 +31,21 @@ The delta rule is the same as the web one: no previous value → nothing; previo
 
 ```swift
 struct KPITile: View {
-    let label: String, value: String, sub: String, delta: Text?, series: [Double]
+    let label: String, value: String, explain: String, delta: Text?, series: [Double]   // delta: "▲ 13% vs Sep"
     let selected: Bool, money: Bool
     var tint: Color { money ? Color("Money") : .accentColor }
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
             HStack { Text(label).fontWeight(selected ? .medium : .regular); Spacer(); delta }.font(.subheadline)
             Text(value).font(.title.weight(.semibold)).monospacedDigit().foregroundStyle(selected ? .primary : .secondary)
-            Text(sub).font(.caption).foregroundStyle(.secondary).lineLimit(2)
             Sparkline(values: series, color: selected ? tint : .secondary)   // same window as the main chart
         }
         .padding(12)
         .background(selected ? tint.opacity(0.06) : .clear, in: .rect(cornerRadius: 12))
         .overlay { if selected { RoundedRectangle(cornerRadius: 12).strokeBorder(tint.opacity(0.22)) } }
         .contentShape(.rect)
+        .help(explain)                                  // the explanation is a tooltip, never a sub-line
+        .accessibilityHint(explain)
         .accessibilityAddTraits(selected ? [.isButton, .isSelected] : .isButton)
     }
 }
@@ -104,6 +105,84 @@ HStack(spacing: 10) {
     .frame(height: 3)
 }
 ```
+
+## Heatmap (classes × days)
+
+```swift
+Grid(horizontalSpacing: 6, verticalSpacing: 6) {
+    ForEach(rows) { row in
+        GridRow {
+            Text(row.name).font(.subheadline.weight(.semibold)).foregroundStyle(.secondary).help(row.owner)
+            ForEach(row.cells.indices, id: \.self) { i in
+                if let rate = row.cells[i] {
+                    Text("\(Int(rate.rounded()))").font(.caption.weight(.semibold)).monospacedDigit()
+                        .frame(maxWidth: .infinity, minHeight: 34)
+                        .background(tierFill(rate), in: .rect(cornerRadius: 9))
+                        .foregroundStyle(.primary)                         // never accent text on an accent tint
+                        .underline(rate < 85)                              // non-colour cue for the problem tier
+                } else {                                                   // not marked: the cell is the action
+                    Button { remind(row) } label: { Image(systemName: "bell").frame(maxWidth: .infinity, minHeight: 34) }
+                        .buttonStyle(.plain).foregroundStyle(Color("Warn"))
+                        .overlay(RoundedRectangle(cornerRadius: 9).strokeBorder(Color("Warn"), style: StrokeStyle(lineWidth: 1.5, dash: [4, 3])))
+                        .accessibilityLabel("\(row.name): not marked. Remind \(row.owner)")
+                }
+            }
+        }
+    }
+}
+
+func tierFill(_ rate: Double) -> Color {                                   // intensity grows toward the problem
+    rate >= 95 ? .accentColor.opacity(0.07) : rate >= 90 ? .accentColor.opacity(0.15)
+        : rate >= 85 ? .accentColor.opacity(0.26) : Color("Warn").opacity(0.30)
+}
+```
+
+## Bullet graph
+
+```swift
+Chart {
+    ForEach(ranges.indices.reversed(), id: \.self) { i in                // good (light) behind, poor (dark) in front
+        BarMark(xStart: .value("From", 0), xEnd: .value("To", ranges[i]), y: .value("Metric", label), height: .ratio(1))
+            .foregroundStyle(.primary.opacity([0.40, 0.25, 0.10][i]))
+    }
+    BarMark(xStart: .value("From", 0), xEnd: .value("Value", value), y: .value("Metric", label), height: .ratio(0.33))
+        .foregroundStyle(.primary)
+    RuleMark(x: .value("Target", target)).foregroundStyle(.primary).lineStyle(StrokeStyle(lineWidth: 2))
+}
+.chartXScale(domain: 0...max).chartYAxis(.hidden).frame(height: 28)
+```
+
+## Selection, scrolling, donut
+
+```swift
+Chart(days) { d in
+    BarMark(x: .value("Day", d.date, unit: .day), y: .value("Sales", d.sales))
+    if let selected, Calendar.current.isDate(d.date, inSameDayAs: selected) {
+        RuleMark(x: .value("Selected", selected, unit: .day))
+            .foregroundStyle(.gray.opacity(0.3)).zIndex(-1)
+            .annotation(position: .top, overflowResolution: .init(x: .fit(to: .chart), y: .disabled)) {
+                ValuePopover(day: d)                           // big exact value, muted date line
+            }
+    }
+}
+.chartXSelection(value: $selected)                             // hover on macOS, touch on iOS
+.chartScrollableAxes(.horizontal)                              // a year of days scrolls; 30 are visible
+.chartXVisibleDomain(length: 3600 * 24 * 30)
+```
+
+Donut, when one share is the point: `SectorMark(angle:, innerRadius: .ratio(0.618), angularInset: 1.5)`
+with `.cornerRadius(5)`, the headline value centred through `chartBackground` and the plot frame, and unselected
+sectors at `.opacity(0.3)` under `chartAngleSelection`.
+
+## Accessibility
+
+- Swift Charts gives every mark an accessibility element and an audio graph; set `.accessibilityLabel` /
+  `.accessibilityValue` per mark, context first and spelled out ("June 1", "36 pancakes").
+- Custom charts adopt `AXChart` and return an `AXChartDescriptor`: title, a one- or two-sentence summary, axis
+  descriptors with a `valueDescriptionProvider` that adds units, and one `AXDataSeriesDescriptor` per series
+  (`isContinuous: true` for lines).
+- Read `@Environment(\.accessibilityDifferentiateWithoutColor)` (add shapes), `\.colorSchemeContrast` (stronger
+  colours) and `\.accessibilityReduceTransparency`.
 
 ## Date range
 

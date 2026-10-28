@@ -21,6 +21,8 @@ to the theme by itself. Starter set (Tailwind v4 `@theme`; plain CSS variables w
   --color-money: #0f7f57;       /* revenue metrics */
   --color-up: #0f7f57;          /* good change */
   --color-down: #d23f45;        /* bad change on a meaningful base */
+  --color-warn: #c98a00;        /* below threshold: heatmap warn tier, overdue chips */
+  --color-tip: #1f2530;         /* tooltip surface */
   --color-live: #12a150;        /* live dots */
   --shadow-card: 0 1px 2px rgb(0 0 0 / .04), 0 1px 1px rgb(0 0 0 / .02);
   --shadow-pop: 0 12px 32px -8px rgb(0 0 0 / .18), 0 0 0 1px rgb(0 0 0 / .06);
@@ -33,17 +35,27 @@ to the theme by itself. Starter set (Tailwind v4 `@theme`; plain CSS variables w
     --color-ink: #f3f3f5; --color-ink-2: #c4c4ca; --color-muted: #8c8c95;
     --color-line: rgb(255 255 255 / .08); --color-line-strong: rgb(255 255 255 / .16);
     --color-accent: #7b96ff; --color-money: #34c48b; --color-up: #34c48b; --color-down: #ff6b70;
+    --color-warn: #f6b100; --color-tip: #2a3548;
   }
 }
 :root[data-theme="dark"] { /* the same dark values again, for a pinned dark theme */ }
 ```
 
-(Copy the dark values into the pinned-theme rule too; the point is one name, two values.)
+(Copy the dark values into the pinned-theme rule too; the point is one name, two values.) To keep a single copy,
+declare each token once with `light-dark()` (`--color-card: light-dark(#ffffff, #141417);`) and let
+`color-scheme` decide: `:root { color-scheme: light dark }`, `[data-theme="light"] { color-scheme: light }`,
+`[data-theme="dark"] { color-scheme: dark }`.
 
 ## Rules
 
-- Two semantic hues carry meaning: `accent` (traffic, selection) and `money` (revenue). Everything else is ink,
-  muted or line. A third hue needs a reason (a third entity), not decoration.
+- Two semantic hues carry meaning: `accent` (traffic, people, selection) and `money` (revenue), plus `warn` for
+  "below threshold". Everything else is ink, muted or line. Another hue needs a reason (a third entity), not
+  decoration.
+- Three intensities, three jobs (Few): **pale** (token at 7–20%) for non-data and de-emphasis: tracks, bar fills,
+  healthy heatmap tiers, avatar tints; **medium** (the token) for data marks; **bright or dark** only for what needs
+  attention. A screen of medium and bright everywhere has nothing left to highlight with.
+- Heatmap tiers are token + alpha, so they adapt to both themes: `accent` at 26 / 15 / 7% over the card for the
+  healthy steps, `warn` at 30% with dark text for the problem tier.
 - Tints are token + alpha: selection `bg-accent/[.06] ring-accent/20`, range band `bg-accent/10`, bar track
   `bg-line/70`, hover `bg-soft/70`.
 - Check muted text contrast on every surface it sits on (card, soft, hover, page), in both themes.

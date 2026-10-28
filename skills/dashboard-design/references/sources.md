@@ -3,6 +3,60 @@
 Studied October 2026; summaries in our own words. No affiliation with any product listed. Revisit the live ones
 before a big redesign — they change.
 
+## Books and research
+
+Studied October 2026 through the authors' own published papers and specifications, and reputable summaries of the
+books; the books themselves were not reproduced. Their rules live in [perception.md](perception.md).
+
+- **Stephen Few** — *Information Dashboard Design* (2006/2013): the thirteen common mistakes, single-screen
+  monitoring, context for every number. Papers on perceptualedge.com: "Why Most Dashboards Fail" (2007, the
+  monitoring sequence; grey display with one red flag), "Practical Rules for Using Color in Charts" (2008, nine
+  rules: three intensities, one hue for quantity, no red/green pairs, no effects), "Bullet Graph Design
+  Specification" (2013).
+- **Edward Tufte** — *The Visual Display of Quantitative Information*: data-ink, chartjunk, the lie factor, small
+  multiples; sparklines from *Beautiful Evidence*.
+- **Cole Nussbaumer Knaflic** — *Storytelling with Data*: declutter, preattentive attributes used sparingly, the
+  "where do your eyes go first?" test.
+- **Steve Wexler, Jeffrey Shaffer, Andy Cotgreave** — *The Big Book of Dashboards*: scenarios over templates; lead
+  with the answer, group related metrics.
+- **Cleveland & McGill** (1984, 1985) via **Nielsen Norman Group** ("Dashboards: Making Charts and Graphs Easier to
+  Understand"): position and length beat area and angle; colour for categories, not magnitude; no gauges, 3D or
+  treemaps on monitoring screens.
+- **Tableau eye-tracking study** (2016–2018): big numbers are seen first and early; the top gets the most time;
+  attention fades along repeated elements. Vendor research, directional.
+- **Lisa Charlotte Muth, Datawrapper** — "Which color scale to use": sequential vs diverging (a meaningful
+  midpoint), classed vs unclassed (thresholds, readable ranges).
+- **IBM Carbon** — presentation vs exploration dashboards, F-pattern priority, one colour per dataset everywhere,
+  white space.
+- **WCAG 2.2** — 1.4.1 (colour never alone), 1.4.11 (3:1 for data marks), 1.4.3 (text in charts), 1.1.1 (a text
+  alternative per chart).
+
+## Apple (WWDC sessions: transcripts, and key frames captured from the videos)
+
+- **Design an effective chart** (WWDC22) — marks chosen with real data; fixed vs dynamic axis ranges; about four
+  gridlines at intuitive steps; the takeaway in the title; large hit areas; colour balanced, distinct by name and
+  never alone; spoken labels context first.
+- **Design app experiences with charts** (WWDC22) — when to chart (change over time, part of a whole, comparison);
+  macro / meso / micro summaries as tappable stats; glance → interactive → expanded with continuity; familiar
+  forms, deliberate differences. Its advice to describe every chart in a full sentence is moved here into the
+  title's number and the tooltip, to keep screens wordless.
+- **Bring accessibility to charts in your app** (WWDC21) — charts as navigable containers, audio graphs through
+  `AXChartDescriptor`, interval grouping for large series, red/green and blue/yellow pairs to avoid.
+- **Writing for interfaces** (WWDC22) — purpose, anticipation, context, empathy; let visuals carry meaning; specific
+  action labels; empty states that guide; errors with a fix; a word list; localisation.
+- **Explore pie charts and interactivity in Swift Charts** (WWDC23) — pies for casual part-to-whole, donut centre
+  label, selection dimming, scrollable long series.
+- **Bring Swift Charts to the third dimension** (WWDC25) — 3D only for truly three-dimensional data explored by
+  rotation, where shape matters more than values.
+
+## Designers
+
+- **Marcel Kargul** (Kargul Studio; x.com/marcelkargul) — a body of shipped dashboard work: light grey pages with
+  white cards, a toolbar of pills, KPI cards with a monochrome icon square and a one-word baseline, heatmaps of
+  rounded number pills, ring charts with the value in the centre and a % legend (for one share, not as gauges),
+  pastel stacked bars with solid caps, dark tooltips with one big value, segmented pills for parts of a total. The
+  clearest example of "the page speaks for itself".
+
 ## Analytics products (live demos)
 
 - **Plausible** — plausible.io/plausible.io — the reference for selected-tile fill, grouped date menu with

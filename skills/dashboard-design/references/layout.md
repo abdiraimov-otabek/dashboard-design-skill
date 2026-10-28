@@ -3,7 +3,9 @@
 ## Page order
 
 Header row (title left; "Updated …", Filter, date range right, in one pill group) → setup or sample banner when
-relevant → KPI strip + main chart in one card → insights line → breakdown panels → recent activity / tables.
+relevant → KPI cards (+ main chart in one card when tiles drive it) → the main view where problems show →
+breakdown panels → recent activity / tables. Most important top-left: readers scan top-down in an F, and the top
+gets the most attention.
 
 ## Width
 
@@ -21,10 +23,19 @@ relevant → KPI strip + main chart in one card → insights line → breakdown 
 ## Grids
 
 - KPI strip: 2 columns on phones, 3 on small screens, 5 (or the tile count) from `lg`.
-- Insights: 1 → 2 → up to 4 across, only as many cards as there are real statements (2+; one lonely card reads as
-  a leftover).
-- Panels: 1 → 2 (`lg`) → 4 (≥112.5rem). Equal heights per row are fine; keep row counts similar (limit 8) so a
-  2-row Devices panel doesn't float in a tall empty card — or let short panels hug content.
+- Attention row (only when a problem has no home on the screen): 1 → up to 3 items across, noun + number + action,
+  never sentences; two or more items, since one lonely card reads as a leftover.
+- Panels: 1 → 2 (`lg`) → 4 (≥112.5rem), or a 12-column grid with 7 + 5 and 6 + 6 rows.
+- **No holes**: cards in one row hold similar amounts of content (limit 8 rows each). When one card is half empty,
+  restructure (fold it into its neighbour, pair it with another short card, move it to a shorter row) instead of
+  stretching it; a stretched card with a blank lower half reads as broken.
+
+## The monitoring view fits one screen
+
+The KPI cards and the main view where problems show fit above the fold at 1440 × 900 (Few's first mistake is a
+monitoring view that needs scrolling). Breakdowns and detail lists may scroll; the answer and the problems may not.
+This rule wins over "KPI strip + main chart in one card": on a monitoring screen the KPI cards only report, and the
+trend chart moves below the problem view; the tile-driven chart belongs to analytics screens.
 
 ## Phones (375 px)
 
@@ -34,6 +45,11 @@ relevant → KPI strip + main chart in one card → insights line → breakdown 
 - Charts: `touch-pan-y` (never `touch-none`) so a vertical swipe still scrolls the page.
 - Segmented tabs: shrink and truncate with `title`, never scroll.
 - Date calendar: bottom sheet, one month.
+- Rows fold before they truncate: drop decorations (avatars, icon squares, chips) and move their facts into the
+  muted second line, so names and numbers stay whole.
+- Heatmaps keep every column at 375 px: narrower label column (36 px), 5 px gaps, 32 px cells, legend hidden
+  (the tooltip still explains each cell). That holds for up to ~7 columns; components.md → Heatmap says what a
+  longer range does.
 
 ## Density and type
 
