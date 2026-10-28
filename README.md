@@ -15,6 +15,32 @@ Nielsen Norman Group**, the WCAG), six of **Apple's WWDC sessions** on charts, c
 writing, two full teardowns, and real redesigns where every rule here was broken once,
 caught on a screenshot, and fixed.
 
+## Sponsors
+
+<table>
+  <tr>
+    <td align="center" width="33%">
+      <a href="https://halo-mac.com/?ref=dashboard-design-skill"><img src="docs/sponsors/halo.png" width="64" height="64" alt="Halo"></a><br>
+      <a href="https://halo-mac.com/?ref=dashboard-design-skill"><b>Halo</b></a><br>
+      <sub>Your Mac's notch, finally awake: now playing, calendar, AI agent status, timers</sub>
+    </td>
+    <td align="center" width="33%">
+      <a href="https://shedi.app/?ref=dashboard-design-skill"><img src="docs/sponsors/shedi.png" width="64" height="64" alt="Shedi"></a><br>
+      <a href="https://shedi.app/?ref=dashboard-design-skill"><b>Shedi</b></a><br>
+      <sub>The honest Mac cleaner for developers: Xcode, Docker, node_modules</sub>
+    </td>
+    <td align="center" width="33%">
+      <a href="https://checkout.dodopayments.com/buy/pdt_0NqiETUgkTb8KOGcBgVqY?quantity=1"><b>Your logo here</b></a><br>
+      <sub>Reach developers and designers who build dashboards with Claude Code</sub><br><br>
+      <a href="https://checkout.dodopayments.com/buy/pdt_0NqiETUgkTb8KOGcBgVqY?quantity=1">Become a sponsor →</a>
+    </td>
+  </tr>
+</table>
+
+<p align="center">
+  <a href="https://checkout.dodopayments.com/buy/pdt_0NqiETUgkTb8KOGcBgVqY?quantity=1"><img src="https://img.shields.io/badge/Become%20a%20sponsor-%245%2Fmonth-e07b5f?style=for-the-badge" alt="Become a sponsor: $5/month"></a>
+</p>
+
 ## New in 2.0
 
 - **Wordless**: a sentence under every KPI and a row of "insights" sentences are gone. Numbers, shapes and
@@ -136,15 +162,6 @@ stops, or delete the "Sign-off" section from `SKILL.md`.
 
 The ten rules behind the skill, with examples and before/after screenshots:
 [I studied 127 dashboards. Most of them quietly lie to you.](https://medium.com/@otabekabdiraimovv/i-studied-127-dashboards-most-of-them-quietly-lie-to-you-38668bb485b1)
-
-## From the maker
-
-I build small, well-made Mac apps and use this skill on my own dashboards:
-
-- **[Halo](https://halo-mac.com/?ref=dashboard-design-skill)**: your Mac's notch, finally awake. Now playing,
-  calendar and calls, AI agent status, timers and a file shelf in a Dynamic Island for macOS. One-time $9.99.
-- **[Shedi](https://shedi.app/?ref=dashboard-design-skill)**: the honest Mac cleaner for developers. Finds the space
-  Xcode, Docker and node_modules are eating, explains every item, and only cleans what you choose.
 
 ## Credits
 
