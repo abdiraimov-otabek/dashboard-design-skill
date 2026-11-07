@@ -15,31 +15,23 @@ Nielsen Norman Group**, the WCAG), six of **Apple's WWDC sessions** on charts, c
 writing, two full teardowns, and real redesigns where every rule here was broken once,
 caught on a screenshot, and fixed.
 
-## Sponsors
+## From the author
 
 <table>
   <tr>
-    <td align="center" width="33%">
-      <a href="https://halo-mac.com/?ref=dashboard-design-skill"><img src="docs/sponsors/halo.png" width="64" height="64" alt="Halo"></a><br>
-      <a href="https://halo-mac.com/?ref=dashboard-design-skill"><b>Halo</b></a><br>
-      <sub>Your Mac's notch, finally awake: now playing, calendar, AI agent status, timers</sub>
-    </td>
-    <td align="center" width="33%">
-      <a href="https://shedi.app/?ref=dashboard-design-skill"><img src="docs/sponsors/shedi.png" width="64" height="64" alt="Shedi"></a><br>
-      <a href="https://shedi.app/?ref=dashboard-design-skill"><b>Shedi</b></a><br>
-      <sub>The honest Mac cleaner for developers: Xcode, Docker, node_modules</sub>
-    </td>
-    <td align="center" width="33%">
-      <a href="https://checkout.dodopayments.com/buy/pdt_0NqiETUgkTb8KOGcBgVqY?quantity=1"><b>Your logo here</b></a><br>
-      <sub>Reach developers and designers who build dashboards with Claude Code</sub><br><br>
-      <a href="https://checkout.dodopayments.com/buy/pdt_0NqiETUgkTb8KOGcBgVqY?quantity=1">Become a sponsor →</a>
-    </td>
+    <td width="50%"><a href="https://halo-mac.com/?ref=dashboard-design-skill"><img src="docs/sponsors/halo-card.png" alt="Halo: answer Claude Code from your Mac's notch. For Mac, $9.99 once."></a></td>
+    <td width="50%"><a href="https://shedi.app/?ref=dashboard-design-skill"><img src="docs/sponsors/shedi-card.png" alt="Shedi: get back the gigabytes your dev tools left behind. For Mac, one-time."></a></td>
   </tr>
 </table>
 
-<p align="center">
-  <a href="https://checkout.dodopayments.com/buy/pdt_0NqiETUgkTb8KOGcBgVqY?quantity=1"><img src="https://img.shields.io/badge/Become%20a%20sponsor-%245%2Fmonth-e07b5f?style=for-the-badge" alt="Become a sponsor: $5/month"></a>
-</p>
+**[Halo](https://halo-mac.com/?ref=dashboard-design-skill)** puts Claude Code and Codex in your Mac's notch. When an
+agent asks for permission, you answer it there, without switching to the terminal. Music, timers and notifications
+live there too. $9.99, once.
+
+**[Shedi](https://shedi.app/?ref=dashboard-design-skill)** finds what Xcode, Docker, `node_modules` and package caches
+leave behind, says what each one is and whether it's safe, and moves it to the Trash first. One-time, no subscription.
+
+<sub>Want your product here? <a href="mailto:support@halo-mac.com?subject=Sponsor%20dashboard-design-skill">Sponsor this repo</a>.</sub>
 
 ## New in 2.0
 
@@ -108,6 +100,10 @@ cp -r dashboard-design-skill/skills/dashboard-design ~/.claude/skills/
 **Other agents** (Codex, Cursor, anything that reads Markdown): point your `AGENTS.md` or rules file at
 `skills/dashboard-design/SKILL.md`; the references load from there.
 
+> [!TIP]
+> Running Claude Code for hours? [Halo](https://halo-mac.com/?ref=dashboard-design-skill-install) shows every
+> session in your Mac's notch and lets you answer its permission prompts there.
+
 ## Use it
 
 It triggers on its own when you work on a dashboard. Or ask directly:
@@ -167,6 +163,13 @@ The ten rules behind the skill, with examples and before/after screenshots:
 
 The screenshots in this README are from Pulse, the author's analytics app, running on sample data. Products named in `sources.md` are referenced for study only; no affiliation.
 Everything in the skill is written in our own words.
+
+## More from the author
+
+- [Halo](https://halo-mac.com/?ref=dashboard-design-skill-footer): a Dynamic Island for your Mac that answers Claude Code and Codex from the notch
+- [Shedi](https://shedi.app/?ref=dashboard-design-skill-footer): the honest Mac cleaner for developers
+- [Shipping Solo](https://shippingsolo.substack.com/): building Mac apps alone, with the real numbers
+- [@abdiraimov_](https://x.com/abdiraimov_) on X
 
 ## License
 
