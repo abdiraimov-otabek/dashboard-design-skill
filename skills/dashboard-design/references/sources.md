@@ -102,3 +102,27 @@ books; the books themselves were not reproduced. Their rules live in [perception
 
 - **SaaSFrame, Dribbble** (popular "analytics dashboard", "date range picker", "KPI cards") — good for compact
   picker patterns; also the clearest catalogue of AI-looking tells to avoid (glass, neon, 3D icons, 3-slice donuts).
+
+## Designers on X (searched 9 Nov 2026, top posts for "dashboard design" and "saas dashboard ui")
+
+The strongest recent dashboards came from a small group posting finished screens, not templates. Look at their
+live posts before a redesign; summaries are in our own words.
+
+- **Akanksha (@uiakanksha_), "Meridian"** (9 Nov 2026) — nested target tiles with tick
+  bars, stat strip with delta pills, hatched MRR movement bars, one teal area chart with a dark tooltip, grouped
+  sidebar (Analytics / Planning / Workspace) with a "3/4" count on Targets. The reference for the target-tile
+  pattern in components.md.
+- **Marcel Kargul (@marcelkargul, Kargul Studio)** — "this is the perfect dashboard design" (Oct 2025, 1.2K likes,
+  116K views): wallet cards with tick bars, purple/orange/green bars for impact, "This Month / 60D / 90D" segmented
+  ranges. Also released a free Figma file of his dashboards (Oct 2026) to study spacing, type and layout.
+- **rico (@_heyrico, ace design)** — "Dashboard design cheatsheet" (Feb 2026): 14 px base text, 16 px icons,
+  1 / 1.2 / 1.5 strokes, medium over semibold. His dashboards pair a dark sidebar with the same tick bars.
+- **Augustas (@AugustasDesign)** — design behind shadcn-based open-source layout "square-ui" (LN, @ln_dev7); a
+  free Figma file and a working Next.js build exist for it.
+- **Josh tried coding (@joshtriedcoding)** — borrows a small interaction from the Cloudflare dashboard that, in his
+  words, makes the UI feel much better; replies compare it to Vercel's sidebar peek. Detail work, not layout.
+
+What these share (and the skill now says): quiet light surfaces and hairlines, big numbers with their goal beside
+them, thin ticked bars instead of fat solid ones, one chart in one hue, deltas as small pills, 14 px type.
+What to distrust in the same results: "perfect dashboard" and "designers charge $5,000" posts with no live product,
+AI-generated multi-page demos, and neon/glass concepts that rack up likes but break the honesty rules.

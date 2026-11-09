@@ -7,7 +7,7 @@
       "name": "dashboard-design",
       "source": "./",
       "description": "Clean, honest, wordless dashboard UI: KPI cards, charts, heatmaps, bullet graphs, comparisons, ranked lists, date pickers, states, layouts and a screenshot QA pass.",
-      "version": "2.0.0"
+      "version": "2.1.0"
     }
   ]
 }

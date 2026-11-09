@@ -6,7 +6,7 @@ description: Clean, honest dashboard UI for web and SwiftUI — KPI cards, chart
 # Dashboard design
 
 Distilled from 127 shipped dashboard screens, the field's classics (Stephen Few, Edward Tufte, Cole Nussbaumer
-Knaflic, Cleveland & McGill, Nielsen Norman Group), two full teardowns, and real redesigns where every rule below
+Knaflic, Cleveland & McGill, Nielsen Norman Group), the best recent designer work on X (Nov 2026), two full teardowns, and real redesigns where every rule below
 was broken once, seen on a screenshot, and fixed. Sources: [references/sources.md](references/sources.md).
 
 A dashboard answers **one question per screen at first glance** ("is the school OK today?", "is it growing, and
@@ -23,6 +23,7 @@ question, flags a problem, or gets out of the way.
 - **Wordless**: names, numbers, units and one- or two-word baselines on the screen, plus compact numeric facts
   ("CPL 24 902 · CTR 1.8%"); every explanation lives in a tooltip. Zero sentences outside tooltips and empty states.
 - **Honest**: a number is the same everywhere it appears, estimates are labelled, a tiny base never shouts.
+- **Goal beside the number**: a target metric shows value, goal and what is left on one tile (tick bar, plain words).
 
 The perception behind these words (encoding ladder, colour rules, scales, bullet graphs, accessibility):
 [references/perception.md](references/perception.md).
@@ -91,6 +92,7 @@ the worked example of that failure and its fix:
 - **Share bars** are slim 3 px rounded tracks along the row's bottom edge.
 - **Controls are custom and calm**: a popover calendar for dates; a menu grid for phone navigation; segmented tabs
   that shrink rather than scroll.
+- **Density**: 14 px base text, 16 px icons, 1 / 1.2 / 1.5 stroke, medium weight over semibold ([tokens.md](references/tokens.md)).
 - **Width grows with the screen** on dashboards: more columns, never a narrow column floating in white space.
 
 ## Sign-off

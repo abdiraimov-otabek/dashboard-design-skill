@@ -60,3 +60,10 @@ declare each token once with `light-dark()` (`--color-card: light-dark(#ffffff, 
   `bg-line/70`, hover `bg-soft/70`.
 - Check muted text contrast on every surface it sits on (card, soft, hover, page), in both themes.
 - A theme setting inside the app overrides the system scheme: test dark mode by setting the app's theme too.
+
+## Density scale (designer consensus, 2026)
+
+Base **14 px** text (13 px for dense tables and sub-lines), **16 px** icons, stroke **1 / 1.2 / 1.5** (1 in nav
+lists, 1.2 default, 1.5 selected or alone), weights regular and medium, semibold only for the page title or a
+headline number. rico's cheatsheet (Feb 2026) puts it as the line between a pro dashboard and a template; a 13 px
+base is accepted if it is held everywhere. Never mix stroke widths inside one icon row.

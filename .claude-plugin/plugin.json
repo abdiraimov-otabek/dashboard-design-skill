@@ -1,7 +1,7 @@
 {
   "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
   "name": "dashboard-design",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Clean, honest, wordless dashboard UI for Claude Code: KPI cards, charts, heatmaps, bullet graphs, comparison periods, ranked breakdowns, date range pickers, filters, empty states, wide and phone layouts, and a screenshot QA pass with a words audit and a salience test. Distilled from 127 shipped dashboards and the field's classics (Few, Tufte, Knaflic, NN/g).",
   "author": { "name": "Otabek Abdiraimov", "url": "https://github.com/abdiraimov-otabek" },
   "homepage": "https://github.com/abdiraimov-otabek/dashboard-design-skill",

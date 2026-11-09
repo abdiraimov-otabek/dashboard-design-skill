@@ -24,6 +24,46 @@ For: the 3–7 headline numbers; clicking one picks the metric the main chart sh
 - Trap: a partial period compared with a full one ("today so far" vs "yesterday") as a red delta. Show the
   comparison value neutrally ("94% yesterday") until the period closes.
 
+## Target tiles: nested card and tick bar (2026 designer wave)
+
+For: a metric with a goal ("$48,230 of $60,000"), where pacing matters more than history. Seen on Meridian
+(Akanksha), Marcel Kargul's and rico's dashboards, Oct 2025 to Nov 2026.
+
+- **Shell + inner card.** Outer tile is a soft panel (`bg-soft`, hairline border) holding only the label row
+  (metric left, "Q4 target" right, 13 px ink-2). Inside sits a white inner card (`rounded-xl`, hairline) that holds
+  the number. The shell gives the label a place without crowding the figure.
+- **Number line:** value 30–36 px medium, `tracking-[-.03em]`, tabular, then the target as a muted 13 px suffix on
+  the same baseline ("of $60,000"). One glance gives value, goal, and unit.
+- **Tick bar** instead of a solid track: 50–70 thin vertical ticks (2 px wide, 3 px gap, ~28 px tall); filled ticks
+  take the metric colour, unfilled are `line` grey. Footer row: what is left in plain words ("$11,770 to go by
+  Dec 31") left, percent right (13 px, tabular).
+- **Bad-is-high metrics (churn):** colour the ticks along a green → amber → red scale and put one dark marker tick at
+  the warning threshold; the sub-line says "0.2 pp below warning", the right label says "Healthy".
+- **Colour rule:** one hue per metric is allowed here because the bar is the whole tile; keep hues to the metric's
+  entity (money green, traffic blue) and let at most one more mark its own meaning. Four unrelated hues
+  (olive, blue, purple, rainbow) is decoration; flag it in critique.
+- Build ticks with `repeating-linear-gradient` plus a width mask, or one `<div>` row of spans; never an image.
+- Trap: a target tile with no target set. Hide the bar and show the plain value, never a fake 0%.
+
+## Stat strip with delta pills
+
+For: 4–6 secondary numbers under the KPI tiles (ARR, NRR, trial conversion, ARPU, LTV:CAC).
+
+- No cards: one row between two hairlines, columns separated by hairline dividers.
+- Per column: label 13 px ink-2 · value 24–28 px medium with a small green `↑ 8.2%` pill beside it · one muted
+  sub-line that defines it ("MRR * 12", "Expansion beats churn"). The sub-line is what makes it a stat, not a tile.
+- Deltas follow the delta-badge rules above; a ratio like 3.4x takes `↑ 0.2x`, not a percent.
+
+## Movement bars (new, expansion, contraction, churn)
+
+For: how a total changed. Header: net figure large ("+3,650 net new MRR").
+
+- Four rows, each: label left, signed amount right (`+$2,610` green, `−$310` red, tabular), thin 14–16 px
+  rounded track (`line` grey) with a fill sized to its share of the largest row.
+- Fill = diagonal hatch in the row's colour (`repeating-linear-gradient(45deg, c 0 2px, transparent 2px 5px)` over a
+  10% tint). Hatch marks a *movement*, solid marks a *level*. Use it on this one component only, or it reads busy.
+- Order: gains first (new, expansion), then losses (contraction, churn). Colour is the sign, never the row's rank.
+
 ## Delta badge
 
 - `▲ 13%` green / `▼ 9%` red, 12 px medium, tabular; `±0%` grey. Colour by meaning, not direction: a
