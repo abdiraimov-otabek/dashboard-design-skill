@@ -1,0 +1,81 @@
+<!doctype html><html lang="en" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Traffic</title>
+<style>
+:root{color-scheme:light dark;
+--page:light-dark(#f8f8f6,#0b0b0d);--card:light-dark(#fff,#141417);--soft:light-dark(#f1f1ef,#1c1c20);
+--ink:light-dark(#17171a,#f3f3f5);--ink2:light-dark(#48484d,#c4c4ca);--muted:light-dark(#66666d,#8c8c95);
+--line:light-dark(rgb(0 0 0/.075),rgb(255 255 255/.08));--line2:light-dark(rgb(0 0 0/.14),rgb(255 255 255/.16));
+--accent:light-dark(#3e63dd,#7b96ff);--money:light-dark(#0f7f57,#34c48b);--up:var(--money);
+--down:light-dark(#d23f45,#ff6b70);--warn:light-dark(#c98a00,#f6b100);--tip:#1f2530;
+--shadow:0 1px 2px rgb(0 0 0/.04),0 1px 1px rgb(0 0 0/.02)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--page);color:var(--ink);font:14px/1.4 -apple-system,"SF Pro Text","Inter",system-ui,sans-serif;font-variant-numeric:tabular-nums;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1440px;margin:0 auto;padding:24px 32px 40px}
+@media(min-width:1800px){.wrap{max-width:1640px}}
+header{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+h1{font-size:20px;font-weight:600;letter-spacing:-.02em;margin:0}
+.chip{font-size:12px;font-weight:500;color:var(--muted);border:1px solid var(--line2);border-radius:999px;padding:2px 9px}
+.sp{flex:1}
+.seg{display:inline-flex;background:var(--soft);border-radius:10px;padding:3px}
+.seg button{all:unset;cursor:pointer;font-size:13px;font-weight:500;color:var(--muted);padding:5px 12px;border-radius:8px}
+.seg button[aria-pressed=true]{background:var(--card);color:var(--ink);box-shadow:var(--shadow),0 0 0 1px var(--line)}
+.seg button:focus-visible,.theme:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.theme{all:unset;cursor:pointer;width:32px;height:32px;display:grid;place-items:center;border-radius:10px;color:var(--muted)}
+.theme:hover{background:var(--soft)}
+
+.kpi{display:grid;grid-template-columns:repeat(4,1fr);background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:8px;gap:0}
+.kpi button{all:unset;cursor:pointer;display:block;padding:14px 16px 12px;border-radius:12px;border-right:0;position:relative}
+.kpi button+button:before{content:"";position:absolute;left:-1px;top:16px;bottom:16px;width:1px;background:var(--line)}
+.kpi button[aria-pressed=true]{background:color-mix(in srgb,var(--accent) 7%,transparent);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--accent) 22%,transparent)}
+.kpi button[aria-pressed=true]:before,.kpi button[aria-pressed=true]+button:before{opacity:0}
+.kpi button:not([aria-pressed=true]):hover{background:color-mix(in srgb,var(--soft) 70%,transparent)}
+.kpi button:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.kpi .t{display:flex;justify-content:space-between;font-size:13px;color:var(--ink2)}
+.kpi button[aria-pressed=true] .t{color:var(--ink);font-weight:500}
+.kpi .v{font-size:30px;font-weight:500;letter-spacing:-.03em;margin:6px 0 8px;color:var(--ink2)}
+.kpi button[aria-pressed=true] .v{color:var(--ink)}
+.kpi svg{width:100%;height:34px;display:block}
+.pill{white-space:nowrap;font-size:12px;font-weight:500;border-radius:999px;padding:1px 7px;background:color-mix(in srgb,var(--c) 12%,transparent);color:var(--c)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:20px 22px;margin-top:16px}
+.card h2{font-size:14px;font-weight:500;color:var(--ink2);margin:0 0 8px;display:flex;justify-content:space-between}
+.card h2 .k{color:var(--muted);font-weight:400;font-size:13px}
+#chart{position:relative;height:300px}#chart svg{width:100%;height:100%;display:block}
+#tip{position:absolute;pointer-events:none;background:var(--tip);color:#fff;border-radius:8px;padding:7px 10px;font-size:12px;white-space:nowrap;opacity:0;transform:translate(-50%,-115%)}
+#tip s{text-decoration:none;color:#9aa4b5;display:block}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.three .card{margin-top:16px}
+.list .r{position:relative;display:grid;grid-template-columns:1fr auto 44px;gap:10px;padding:10px 0 14px;font-size:14px}
+.list .r span:nth-child(2){font-weight:500}.list .r span:nth-child(3){text-align:right;color:var(--muted)}
+.list .r:before{content:"";position:absolute;left:0;right:0;bottom:4px;height:3px;border-radius:2px;background:var(--line)}
+.list .r:after{content:"";position:absolute;left:0;bottom:4px;height:3px;border-radius:2px;width:var(--w);background:var(--accent);z-index:1}
+@media(max-width:1100px){.kpi{grid-template-columns:1fr 1fr}.three{grid-template-columns:1fr}}
+</style></head><body><div class="wrap">
+<header><h1>Traffic</h1><span class="chip">Sample data</span><span class="sp"></span><div class="seg"><button data-n="7" aria-pressed="false">7D</button><button data-n="28" aria-pressed="true">4W</button></div></header>
+<section class="kpi" id="kpi"></section>
+<section class="card"><h2><span id="ct">Visitors</span><span class="k"><span style="color:var(--accent)">●</span> This period &nbsp; - - Previous</span></h2><div id="chart"><div id="tip"></div></div></section>
+<section class="three"><div class="card"><h2><span>Pages</span><span class="k">Visitors</span></h2><div class="list" id="pg"></div></div><div class="card"><h2><span>Sources</span><span class="k">Visitors</span></h2><div class="list" id="sr"></div></div><div class="card"><h2><span>Countries</span><span class="k">Visitors</span></h2><div class="list" id="dv"></div></div></section>
+</div><script>
+function rng(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+const R=rng(11),D=[];for(let i=0;i<56;i++){const wd=(i+0)%7,base=330+i*3.2+(wd==1||wd==2?70:0)-(wd>=5?60:0)+(R()-.5)*60+(i==41?420:0)+(i==50?240:0);const v=Math.round(base),pv=Math.round(v*(2.1+R()*.5)),su=Math.round(v*(.026+R()*.012));D.push({d:new Date(2026,9,12+i),v,pv,su})}
+const $=s=>document.querySelector(s),M={v:{l:"Visitors",f:x=>x.toLocaleString("en-US"),get:d=>d.v,sum:true},pv:{l:"Pageviews",f:x=>x.toLocaleString("en-US"),get:d=>d.pv,sum:true},su:{l:"Signups",f:x=>x.toLocaleString("en-US"),get:d=>d.su,sum:true},cv:{l:"Conversion",f:x=>x.toFixed(2)+"%",get:d=>d.su/d.v*100,sum:false}};
+let N=28,sel="v";
+const tot=(ds,m)=>m=="cv"?ds.reduce((s,d)=>s+d.su,0)/ds.reduce((s,d)=>s+d.v,0)*100:ds.reduce((s,d)=>s+M[m].get(d),0);
+function alloc(total,w,names){let out=w.map(x=>Math.floor(total*x));out[out.length-1]+=total-out.reduce((a,b)=>a+b,0);return names.map((n,i)=>[n,out[i]])}
+function render(){const cur=D.slice(56-N),prv=D.slice(56-2*N,56-N);
+ $("#kpi").innerHTML=Object.keys(M).map(m=>{const a=tot(cur,m),b=tot(prv,m),dd=(a-b)/b*100,ser=cur.map(M[m].get),mx=Math.max(...ser),mn=Math.min(...ser);
+  const pts=ser.map((v,i)=>(i/(ser.length-1)*100).toFixed(1)+","+(32-(v-mn)/(mx-mn||1)*28).toFixed(1)).join(" ");const on=m==sel,c=Math.abs(dd)<1?"var(--muted)":dd>0?"var(--up)":"var(--down)";
+  return`<button aria-pressed="${on}" data-m="${m}"><div class="t"><span>${M[m].l}</span><span class="pill" style="--c:${c}">${dd>=0?"\u2191":"\u2193"} ${Math.abs(dd).toFixed(1)}%</span></div><div class="v">${M[m].f(a)}</div><svg viewBox="0 0 100 34" preserveAspectRatio="none"><polyline points="${pts}" fill="none" stroke="${on?"var(--accent)":"var(--line2)"}" stroke-width="1.6" vector-effect="non-scaling-stroke" stroke-linejoin="round"/></svg></button>`}).join("");
+ document.querySelectorAll(".kpi button").forEach(b=>b.onclick=()=>{sel=b.dataset.m;render()});
+ $("#ct").textContent=M[sel].l;
+ const box=$("#chart"),W=box.clientWidth,H=box.clientHeight,pl=48,pr=8,pt=10,pb=24,iw=W-pl-pr,ih=H-pt-pb,cs=cur.map(M[sel].get),ps=prv.map(M[sel].get);
+ const top=Math.max(...cs,...ps),step=sel=="cv"?1:(top>2000?500:top>800?200:100),mx=Math.ceil(top/step)*step,x=i=>pl+iw*i/(N-1),y=v=>pt+ih*(1-v/mx),P=a=>a.map((v,i)=>(i?"L":"M")+x(i).toFixed(1)+","+y(v).toFixed(1)).join("");
+ const fmtAx=v=>sel=="cv"?v+"%":v>=1000?(v/1000)+"k":v;let g="";for(let t=0;t<=mx;t+=mx/4)g+=`<line x1="${pl}" x2="${W-pr}" y1="${y(t)}" y2="${y(t)}" stroke="var(--line)"/><text x="${pl-8}" y="${y(t)+4}" text-anchor="end" font-size="11" fill="var(--muted)">${fmtAx(+t.toFixed(2))}</text>`;
+ [0,Math.floor((N-1)/2),N-1].forEach(i=>g+=`<text x="${x(i)}" y="${H-6}" text-anchor="${i==0?"start":i==N-1?"end":"middle"}" font-size="11" fill="var(--muted)">${cur[i].d.toLocaleDateString("en-US",{month:"short",day:"numeric"})}</text>`);
+ box.querySelector("svg")?.remove();box.insertAdjacentHTML("afterbegin",`<svg viewBox="0 0 ${W} ${H}"><defs><linearGradient id="g" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="var(--accent)" stop-opacity=".22"/><stop offset="1" stop-color="var(--accent)" stop-opacity="0"/></linearGradient></defs>${g}<path d="${P(ps)}" fill="none" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="3 4" opacity=".7"/><path d="${P(cs)}L${x(N-1)},${y(0)}L${x(0)},${y(0)}Z" fill="url(#g)"/><path d="${P(cs)}" fill="none" stroke="var(--accent)" stroke-width="1.8" stroke-linejoin="round"/><line id="cu" y1="${pt}" y2="${pt+ih}" stroke="var(--line2)" stroke-dasharray="3 3" opacity="0"/><rect id="hit" x="${pl}" width="${iw}" height="${H}" fill="transparent"/></svg>`);
+ const tip=$("#tip");$("#hit").onmousemove=e=>{const r=box.getBoundingClientRect(),i=Math.max(0,Math.min(N-1,Math.round((e.clientX-r.left-pl)/iw*(N-1))));$("#cu").setAttribute("x1",x(i));$("#cu").setAttribute("x2",x(i));$("#cu").style.opacity=1;tip.innerHTML=M[sel].f(cs[i])+"<s>"+cur[i].d.toLocaleDateString("en-US",{month:"short",day:"numeric"})+" \u00B7 prev "+M[sel].f(ps[i])+"</s>";tip.style.left=x(i)+"px";tip.style.top=y(cs[i])+"px";tip.style.opacity=1};$("#hit").onmouseleave=()=>{$("#cu").style.opacity=0;tip.style.opacity=0};
+ const V=tot(cur,"v"),list=(id,rows)=>{const mxr=Math.max(...rows.map(r=>r[1]));$(id).innerHTML=rows.map(([n,v])=>`<div class="r" style="--w:${v/mxr*100}%"><span>${n}</span><span>${v.toLocaleString("en-US")}</span><span>${Math.round(v/V*100)}%</span></div>`).join("")};
+ const pg=alloc(V,[.31,.22,.15,.11,.08,.13],["/","/pricing","/blog/dashboard-rules","/docs","/changelog","Other"]),sr=alloc(V,[.34,.24,.17,.11,.08,.06],["Threads","Search","Direct","Reddit","X","Other"]),dv=alloc(V,[.33,.14,.11,.09,.08,.25],["United States","Germany","United Kingdom","India","Uzbekistan","Other"]);
+ list("#pg",pg);list("#sr",sr);list("#dv",dv);
+ window.__chk={V,pg:pg.reduce((s,r)=>s+r[1],0),sr:sr.reduce((s,r)=>s+r[1],0),dv:dv.reduce((s,r)=>s+r[1],0),chart:cur.reduce((s,d)=>s+d.v,0),conv:+tot(cur,"cv").toFixed(3),su:tot(cur,"su"),vis:V}}
+document.querySelectorAll(".seg button").forEach(b=>b.onclick=()=>{N=+b.dataset.n;document.querySelectorAll(".seg button").forEach(x=>x.setAttribute("aria-pressed",x===b));render()});
+addEventListener("resize",render);render();
+</script></body></html>

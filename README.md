@@ -5,7 +5,7 @@
 **A Claude Code skill that designs clean, honest dashboards.**<br>
 Build, redesign and critique data screens on the web or in SwiftUI, checked on real screenshots before it calls a job done.
 
-[![Version](https://img.shields.io/badge/version-2.0.0-5b5bd6?style=flat-square)](#whats-new-in-20) [![Claude Code plugin](https://img.shields.io/badge/Claude_Code-plugin-d97757?style=flat-square)](#install) [![Works with Codex and Cursor](https://img.shields.io/badge/works_with-Codex_·_Cursor-2f2f2f?style=flat-square)](#other-agents) [![License: MIT](https://img.shields.io/badge/license-MIT-2ea043?style=flat-square)](LICENSE) [![GitHub stars](https://img.shields.io/github/stars/abdiraimov-otabek/dashboard-design-skill?style=flat-square&color=e3b341)](https://github.com/abdiraimov-otabek/dashboard-design-skill/stargazers)
+[![Version](https://img.shields.io/badge/version-2.1.0-5b5bd6?style=flat-square)](#whats-new-in-20) [![Claude Code plugin](https://img.shields.io/badge/Claude_Code-plugin-d97757?style=flat-square)](#install) [![Works with Codex and Cursor](https://img.shields.io/badge/works_with-Codex_·_Cursor-2f2f2f?style=flat-square)](#other-agents) [![License: MIT](https://img.shields.io/badge/license-MIT-2ea043?style=flat-square)](LICENSE) [![GitHub stars](https://img.shields.io/github/stars/abdiraimov-otabek/dashboard-design-skill?style=flat-square&color=e3b341)](https://github.com/abdiraimov-otabek/dashboard-design-skill/stargazers)
 
 [Quick start](#quick-start) · [What it changes](#what-it-changes) · [Usage](#usage) · [What's inside](#whats-inside) · [Principles](#principles) · [Contributing](#contributing)
 
@@ -80,6 +80,18 @@ leave behind, says what each one is and whether it's safe, and moves it to the T
 | A card stretched half empty | Rows restructured so cards hold similar content |
 | Sideways-scrolling tabs on phones | A menu grid and tabs that shrink |
 
+### Three screens built with the skill
+
+Each is a single HTML file in [`examples/`](examples) with fixed sample data; open it in a browser. Every total on
+screen was checked against numbers computed outside the page.
+
+| | |
+|---|---|
+| ![Sales: target tiles with tick bars, a stat strip, a revenue chart and hatched change bars](docs/images/example-sales.jpg) | ![Traffic: a KPI card where the selected tile drives the chart, with ranked lists below](docs/images/example-traffic.jpg) |
+| **Sales** ([`sales.html`](examples/sales.html)): target tiles, stat strip, change bars | **Traffic** ([`traffic.html`](examples/traffic.html)): the selected tile drives the chart |
+| ![Status: uptime history ticks per service, an error-rate bar and an incident list](docs/images/example-status.jpg) | |
+| **Status** ([`status.html`](examples/status.html)): a monitoring view with history ticks | |
+
 ### Before / after on an ultrawide screen
 
 ![Before: a narrow column with empty bands on both sides](docs/images/wide-before.jpg)
@@ -91,6 +103,15 @@ leave behind, says what each one is and whether it's safe, and moves it to the T
 |---|---|
 | ![KPI tiles with the selected one as a soft tinted fill](docs/images/kpi-tiles.jpg) | ![Ranked lists with slim share bars](docs/images/ranked-lists.jpg) |
 | ![One-month range calendar with a soft band between solid end days](docs/images/range-calendar.jpg) | ![Phone navigation as a menu grid](docs/images/phone-menu.jpg) |
+
+## What's new in 2.1
+
+- **Target tiles**: a soft outer panel with the label, an inner card with the number and its goal beside it, and a
+  tick bar with what is left in plain words. A bad-is-high variant (churn, errors) runs green to red with a marker
+  at the warning line.
+- **Stat strip** with delta pills, and **hatched movement bars** for how a total changed.
+- **Density scale**: 14 px text, 16 px icons, 1 / 1.2 / 1.5 stroke, medium over semibold.
+- **Sources**: the best recent dashboards by designers on X (Nov 2026), summarised in `sources.md`.
 
 ## What's new in 2.0
 

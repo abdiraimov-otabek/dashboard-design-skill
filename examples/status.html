@@ -1,0 +1,72 @@
+<!doctype html><html lang="en" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Status</title>
+<style>
+:root{color-scheme:light dark;
+--page:light-dark(#f8f8f6,#0b0b0d);--card:light-dark(#fff,#141417);--soft:light-dark(#f1f1ef,#1c1c20);
+--ink:light-dark(#17171a,#f3f3f5);--ink2:light-dark(#48484d,#c4c4ca);--muted:light-dark(#66666d,#8c8c95);
+--line:light-dark(rgb(0 0 0/.075),rgb(255 255 255/.08));--line2:light-dark(rgb(0 0 0/.14),rgb(255 255 255/.16));
+--accent:light-dark(#3e63dd,#7b96ff);--money:light-dark(#0f7f57,#34c48b);--up:var(--money);
+--down:light-dark(#d23f45,#ff6b70);--warn:light-dark(#c98a00,#f6b100);--tip:#1f2530;
+--shadow:0 1px 2px rgb(0 0 0/.04),0 1px 1px rgb(0 0 0/.02)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--page);color:var(--ink);font:14px/1.4 -apple-system,"SF Pro Text","Inter",system-ui,sans-serif;font-variant-numeric:tabular-nums;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1440px;margin:0 auto;padding:24px 32px 40px}
+@media(min-width:1800px){.wrap{max-width:1640px}}
+header{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+h1{font-size:20px;font-weight:600;letter-spacing:-.02em;margin:0}
+.chip{font-size:12px;font-weight:500;color:var(--muted);border:1px solid var(--line2);border-radius:999px;padding:2px 9px}
+.sp{flex:1}
+.seg{display:inline-flex;background:var(--soft);border-radius:10px;padding:3px}
+.seg button{all:unset;cursor:pointer;font-size:13px;font-weight:500;color:var(--muted);padding:5px 12px;border-radius:8px}
+.seg button[aria-pressed=true]{background:var(--card);color:var(--ink);box-shadow:var(--shadow),0 0 0 1px var(--line)}
+.seg button:focus-visible,.theme:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.theme{all:unset;cursor:pointer;width:32px;height:32px;display:grid;place-items:center;border-radius:10px;color:var(--muted)}
+.theme:hover{background:var(--soft)}
+
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.tile{background:var(--soft);border:1px solid var(--line);border-radius:18px;padding:10px}
+.tile .top{display:flex;justify-content:space-between;font-size:13px;color:var(--ink2);padding:4px 8px 10px}.tile .top span:last-child{color:var(--muted)}
+.inner{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 16px 14px;box-shadow:var(--shadow)}
+.num{display:flex;align-items:baseline;gap:8px;white-space:nowrap}.num b{font-size:34px;font-weight:500;letter-spacing:-.03em;line-height:1.1}.num small{font-size:13px;color:var(--muted)}
+.ticks{display:flex;gap:2px;height:28px;margin:14px 0 10px}.ticks i{flex:1;border-radius:1px;background:var(--line2);min-width:2px}.ticks i.mk{background:var(--ink);flex:0 0 3px;margin:0 1px;transform:scaleY(1.25)}
+.foot{display:flex;justify-content:space-between;font-size:13px;color:var(--muted)}.foot b{font-weight:500;color:var(--ink)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:20px 22px;margin-top:16px}
+.card h2{font-size:14px;font-weight:500;color:var(--ink2);margin:0 0 8px;display:flex;justify-content:space-between}.card h2 .k{color:var(--muted);font-weight:400;font-size:13px}
+.svc{display:grid;grid-template-columns:150px 1fr 74px 74px 74px 92px;gap:18px;align-items:center;padding:13px 0;border-top:1px solid var(--line);font-size:14px}
+.svc.head{border-top:0;padding:4px 0 8px;font-size:12px;font-weight:500;color:var(--muted)}.svc.head span:nth-child(n+3),.svc>span:nth-child(n+3){text-align:right}
+.svc .ticks{margin:0;height:22px;gap:2px}
+.chipst{font-size:12px;font-weight:500;border-radius:999px;padding:2px 9px;text-align:center;background:color-mix(in srgb,var(--c) 13%,transparent);color:var(--c);justify-self:end}
+.inc{display:grid;grid-template-columns:18px 1fr 120px 90px 90px;gap:14px;align-items:center;padding:12px 0;border-top:1px solid var(--line);font-size:14px}
+.inc:first-of-type{border-top:0}.inc>span:nth-child(n+3){text-align:right;color:var(--muted)}
+.dotk{width:8px;height:8px;border-radius:3px;background:var(--c)}
+.legend{display:flex;gap:14px}.legend i{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:6px}
+@media(max-width:1100px){.tiles{grid-template-columns:repeat(2,1fr)}.svc{grid-template-columns:110px 1fr 70px 80px}.svc>span:nth-child(5),.svc>span:nth-child(6),.svc.head span:nth-child(5),.svc.head span:nth-child(6){display:none}.inc{grid-template-columns:18px 1fr 90px}.inc>span:nth-child(n+4){display:none}}
+@media(max-width:560px){.tiles{grid-template-columns:1fr}.svc{grid-template-columns:100px 1fr 64px}.svc>span:nth-child(4),.svc.head span:nth-child(4){display:none}.wrap{padding:16px}}
+</style></head><body><div class="wrap">
+<header><h1>Status</h1><span class="chip">Sample data</span><span class="sp"></span><div class="seg"><button data-n="30" aria-pressed="false">30D</button><button data-n="60" aria-pressed="true">60D</button></div></header>
+<section class="tiles" id="tiles"></section>
+<section class="card"><h2><span>Services</span><span class="k legend"><span><i style="background:var(--money)"></i>OK</span><span><i style="background:var(--warn)"></i>Degraded</span><span><i style="background:var(--down)"></i>Down</span></span></h2><div id="svc"></div></section>
+<section class="card"><h2><span>Incidents</span><span class="k" id="ik"></span></h2><div id="inc"></div></section>
+</div><script>
+function rng(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+const SV=[["API",1,.9995,180,.0009],["Dashboard",2,.9990,240,.0012],["Checkout",3,.9992,310,.0018],["Webhooks",4,.9970,520,.0031],["Search",5,.9985,420,.0021],["Auth",6,.9996,150,.0006]];
+const DAYS=60,S=SV.map(([n,seed,up,p95,er])=>{const R=rng(seed*97),h=[];for(let i=0;i<DAYS;i++){const r=R();h.push(r>up+.0012?(r>.9985?2:1):0)}return{n,h,p95:Math.round(p95*(.9+R()*.2)),er:er*(.8+R()*.5),req:Math.round(1e5*(1+R()))}});
+S[3].h[DAYS-1]=1;S[3].h[DAYS-2]=1;S[1].h[44]=2;S[2].h[DAYS-1]=0;S[4].h[20]=2;S[4].h[21]=2;S[0].h[31]=1;S[3].h[8]=2;S[2].h[50]=1;
+const $=s=>document.querySelector(s),COL=["var(--money)","var(--warn)","var(--down)"];let N=60;
+const tk=(a)=>`<div class="ticks">${a.map(s=>`<i style="background:${COL[s]};opacity:${s?1:.85}"></i>`).join("")}</div>`;
+function incidents(ds){const out=[];S.forEach(s=>{const h=s.h.slice(DAYS-N);let i=0;while(i<N){if(h[i]){let j=i,sev=0;while(j<N&&h[j]){sev=Math.max(sev,h[j]);j++}out.push({n:s.n,start:i,len:j-i,sev,open:j==N});i=j}else i++}});return out.sort((a,b)=>b.start+b.len-(a.start+a.len)||b.sev-a.sev)}
+function render(){const hs=S.map(s=>s.h.slice(DAYS-N)),fleet=Array.from({length:N},(_,i)=>Math.max(...hs.map(h=>h[i])));
+ const up=S.reduce((a,s,k)=>a+(1-hs[k].filter(x=>x==2).length/N),0)/S.length*100,inc=incidents(),open=inc.filter(x=>x.open).length,tr=S.reduce((a,s)=>a+s.req,0),er=S.reduce((a,s)=>a+s.er*s.req,0)/tr*100,p95=Math.max(...S.map(s=>s.p95)),maxs=S.reduce((m,s)=>s.p95>m.p95?s:m);
+ const ERW=.3,ERM=.5,mkTick=(frac,warn)=>{let h="";const n=56,on=Math.round(Math.min(1,frac)*n),m=Math.round(warn*n);for(let i=0;i<n;i++){if(i==m){h+='<i class="mk"></i>';continue}const p=i/n,c=p<.5?"var(--money)":p<warn?"var(--warn)":"var(--down)";h+=`<i style="background:${c};opacity:${i<on?1:.25}"></i>`}return`<div class="ticks" style="gap:3px">${h}</div>`};
+ const tile=(l,t,num,suf,bar,l2,r2)=>`<div class="tile"><div class="top"><span>${l}</span><span>${t}</span></div><div class="inner"><div class="num"><b>${num}</b><small>${suf}</small></div>${bar}<div class="foot"><span>${l2}</span><b>${r2}</b></div></div></div>`;
+ $("#tiles").innerHTML=tile("Uptime","All services",up.toFixed(2)+"%","fleet",tk(fleet),N+" days",up>=99.9?"Meets SLO":'<span style="color:var(--down)">Below SLO</span>')+
+  tile("Open incidents","Right now",open,"of "+inc.length,`<div class="ticks">${Array.from({length:Math.max(inc.length,1)},(_,i)=>`<i style="background:${i<open?"var(--down)":"var(--money)"};opacity:${i<open?1:.55}"></i>`).join("")}</div>`,inc.length-open+" resolved",open?"Act":"Clear")+
+  tile("Error rate","Warn at "+ERW.toFixed(2)+"%",er.toFixed(2)+"%","of requests",mkTick(er/ERM,ERW/ERM),Math.abs(ERW-er).toFixed(2)+" pp "+(er<ERW?"below":"above"),er<ERW?"Healthy":"High")+
+  tile("p95 latency","Target 400 ms",p95+" ms","slowest",mkTick(p95/600,400/600),maxs.n,p95<=400?"Healthy":"Over");
+ $("#svc").innerHTML=`<div class="svc head"><span>Service</span><span>Last ${N} days</span><span>Uptime</span><span>p95</span><span>Errors</span><span></span></div>`+S.map((s,k)=>{const h=hs[k],now=h[N-1],u=(1-h.filter(x=>x==2).length/N)*100;return`<div class="svc"><span style="font-weight:500">${s.n}</span>${tk(h)}<span>${u.toFixed(2)}%</span><span>${s.p95} ms</span><span>${(s.er*100).toFixed(2)}%</span><span class="chipst" style="--c:${COL[now]}">${["OK","Degraded","Down"][now]}</span></div>`}).join("");
+ const dt=i=>{const d=new Date(2026,11,6-(N-1-i));return d.toLocaleDateString("en-US",{month:"short",day:"numeric"})};
+ $("#ik").textContent=inc.length+" in "+N+" days";
+ $("#inc").innerHTML=inc.slice(0,5).map(x=>`<div class="inc"><i class="dotk" style="--c:${COL[x.sev]}"></i><span style="font-weight:500">${x.n}</span><span>${dt(x.start)}</span><span>${x.len} d</span><span style="color:${x.open?"var(--down)":"var(--muted)"}">${x.open?"Open":"Resolved"}</span></div>`).join("");
+ window.__chk={up:+up.toFixed(3),inc:inc.length,open,incDays:inc.reduce((a,x)=>a+x.len,0),badDays:hs.reduce((a,h)=>a+h.filter(Boolean).length,0),tiles:$("#tiles").innerText.replace(/\n+/g," | ")}}
+document.querySelectorAll(".seg button").forEach(b=>b.onclick=()=>{N=+b.dataset.n;document.querySelectorAll(".seg button").forEach(x=>x.setAttribute("aria-pressed",x===b));render()});render();
+</script></body></html>
