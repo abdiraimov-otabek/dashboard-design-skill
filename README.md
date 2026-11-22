@@ -60,6 +60,12 @@ live there too. $9.99, once.
 **[Shedi](https://shedi.app/?ref=dashboard-design-skill)** finds what Xcode, Docker, `node_modules` and package caches
 leave behind, says what each one is and whether it's safe, and moves it to the Trash first. One-time, no subscription.
 
+**[Gold Master Kit](https://goldmasterkit.com/?ref=dashboard-design-skill)** is five Claude Code skills for launching a
+Mac or iOS app: App Store screenshots, link previews, launch posts, a launch film and a landing page, all made from
+your app's real UI and checked before you see them. One of them,
+**[og-images](https://github.com/abdiraimov-otabek/claude-code-og-image-skill?ref=dashboard-design-skill)**, is free
+and MIT like this one.
+
 <sub>Want your product here? <a href="mailto:support@halo-mac.com?subject=Sponsor%20dashboard-design-skill">Sponsor this repo</a>.</sub>
 
 ## What it changes
@@ -222,6 +228,8 @@ it stops, or delete the "Sign-off" section from `SKILL.md`.
 
 - [Halo](https://halo-mac.com/?ref=dashboard-design-skill-footer): a Dynamic Island for your Mac that answers Claude Code and Codex from the notch
 - [Shedi](https://shedi.app/?ref=dashboard-design-skill-footer): the honest Mac cleaner for developers
+- [Gold Master Kit](https://goldmasterkit.com/?ref=dashboard-design-skill-footer): Claude Code skills for an app launch, from App Store screenshots to the landing page
+- [og-images](https://github.com/abdiraimov-otabek/claude-code-og-image-skill?ref=dashboard-design-skill-footer): a free skill that makes link previews, a Product Hunt gallery and an X header from your app's real UI
 - [Shipping Solo](https://shippingsolo.substack.com/): building Mac apps alone, with the real numbers
 - [@abdiraimov_](https://x.com/abdiraimov_) on X
 
