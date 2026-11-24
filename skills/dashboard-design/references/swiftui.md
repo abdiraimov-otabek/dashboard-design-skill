@@ -232,3 +232,31 @@ xcrun simctl io booted screenshot ~/Desktop/qa-iphone-dark-ax5.png
 - Open every screenshot and run the consistency checks and smell table from qa.md; they apply unchanged.
 - `#Preview` with fixed sample data for each state (empty, tiny data, loading, error) catches most issues before
   the simulator.
+
+## Funnel, cohorts, uptime
+
+```swift
+// Funnel: horizontal bars, widths = share of step 1; the worst drop takes the warm colour.
+Chart(steps) { s in
+    BarMark(x: .value("People", s.count), y: .value("Step", s.label))
+        .foregroundStyle(s.id == worstStep ? Color.orange : Color.accentColor)
+        .annotation(position: .trailing) { Text(s.count, format: .number.notation(.compactName)).font(.caption).monospacedDigit() }
+}
+.chartXAxis(.hidden)
+
+// Cohort grid: RectangleMark per (cohort, week); future weeks are simply absent, never 0.
+Chart(cells) { c in
+    RectangleMark(x: .value("Week", c.week), y: .value("Cohort", c.cohort))
+        .foregroundStyle(Color.accentColor.opacity(c.pct >= 40 ? 0.7 : c.pct >= 25 ? 0.4 : c.pct >= 15 ? 0.2 : 0.08))
+        .annotation(position: .overlay) { Text("\(Int(c.pct))%").font(.caption2).monospacedDigit() }
+}
+
+// Uptime: one capsule per day, grey unless degraded or down.
+HStack(spacing: 2) {
+    ForEach(days) { d in
+        Capsule().fill(d.state == .down ? Color.red : d.state == .degraded ? Color.orange : Color.secondary.opacity(0.25))
+            .frame(height: 28).help("\(d.date.formatted(date: .abbreviated, time: .omitted)): \(d.note)")
+    }
+}
+.accessibilityElement(children: .ignore).accessibilityLabel("\(name): \(pct, specifier: "%.2f")% uptime")
+```

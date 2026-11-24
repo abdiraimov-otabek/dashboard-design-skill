@@ -51,6 +51,9 @@ books; the books themselves were not reproduced. Their rules live in [perception
 
 ## Designers
 
+The 2026 study of 64 dashboard posts by designers on X (Marcel Kargul, Sajibur Rahman, Sujon, ln_dev7, Toby Belhome,
+Salung Prastyo, Bagus Fikri and others), with counts and what to steal: [inspiration.md](inspiration.md).
+
 - **Marcel Kargul** (Kargul Studio; x.com/marcelkargul) — a body of shipped dashboard work: light grey pages with
   white cards, a toolbar of pills, KPI cards with a monochrome icon square and a one-word baseline, heatmaps of
   rounded number pills, ring charts with the value in the centre and a % legend (for one share, not as gauges),

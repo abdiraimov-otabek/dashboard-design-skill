@@ -232,3 +232,98 @@ for (const type of ['pointerover', 'focusin'] as const)
 document.addEventListener('scroll', hide, true);
 document.addEventListener('keydown', e => { if (e.key === 'Escape') hide(); });
 ```
+
+## Funnel (steps as bars, never a trapezoid)
+
+```tsx
+/** Widths are each step's share of step 1; the worst drop against its own normal takes the warm tier. */
+export function Funnel({ steps, normal }: { steps: { label: string; n: number }[]; normal?: number[] }) {
+  const first = steps[0]?.n || 1;
+  const drops = steps.slice(1).map((s, i) => s.n / (steps[i].n || 1));            // conversion from the step before
+  const worst = normal ? drops.map((d, i) => d / normal[i]).reduce((w, r, i, a) => (r < a[w] ? i : w), 0) : -1;
+  return (
+    <ol className="grid gap-3">
+      {steps.map((s, i) => (
+        <li key={s.label} className="grid grid-cols-[8rem_1fr_6rem] items-center gap-3 text-sm">
+          <span className="text-ink-2">{s.label}</span>
+          <span className="h-3 rounded-full bg-ink/10">
+            <span className={`block h-full rounded-full ${i - 1 === worst ? 'bg-warn' : 'bg-accent'}`}
+              style={{ width: `${(100 * s.n) / first}%` }} />
+          </span>
+          <span className="text-right tnum">{compact.format(s.n)}
+            {i > 0 && <span className="ml-1.5 text-ink-2">−{share(100 * (1 - drops[i - 1]))}</span>}</span>
+        </li>
+      ))}
+    </ol>
+  );
+}
+```
+
+## Cohort retention grid
+
+```tsx
+/** Rows = cohorts (newest last), cols = weeks since signup. Future cells stay blank, never 0%. High = good, so darker = better. */
+const tier = (p: number) => (p >= 40 ? 'bg-accent/70 text-white' : p >= 25 ? 'bg-accent/40' : p >= 15 ? 'bg-accent/20' : 'bg-accent/8');
+export function Cohorts({ rows }: { rows: { label: string; size: number; pct: (number | null)[] }[] }) {
+  return (
+    <table className="text-xs tnum">
+      <tbody>{rows.map(r => (
+        <tr key={r.label}>
+          <th className="pr-3 text-left font-normal text-ink-2">{r.label} · {r.size}</th>
+          {r.pct.map((p, w) => (
+            <td key={w} className="p-0.5">
+              {p == null ? <span className="block h-7 w-11" /> :
+                <span className={`grid h-7 w-11 place-items-center rounded-md ${tier(p)}`} data-tip={`${r.label} · week ${w}: ${p}%`}>{Math.round(p)}%</span>}
+            </td>
+          ))}
+        </tr>
+      ))}</tbody>
+    </table>
+  );
+}
+```
+
+## Uptime bars
+
+```tsx
+/** One thin bar per day; only bad days take strong colour. */
+const dayColor = { up: 'bg-ink/15', degraded: 'bg-warn', down: 'bg-down', none: 'bg-ink/5' } as const;
+export function Uptime({ name, days, pct }: { name: string; days: { date: string; state: keyof typeof dayColor; note?: string }[]; pct: number }) {
+  return (
+    <div className="grid gap-1.5">
+      <div className="flex justify-between text-sm"><span>{name}</span><span className="tnum text-ink-2">{pct.toFixed(2)}%</span></div>
+      <div className="flex h-8 gap-[2px]">
+        {days.map(d => <span key={d.date} className={`flex-1 rounded-[2px] ${dayColor[d.state]}`} data-tip={`${d.date}: ${d.note ?? d.state}`} />)}
+      </div>
+      <div className="flex justify-between text-xs text-ink-2"><span>{days.length} days ago</span><span>today</span></div>
+    </div>
+  );
+}
+```
+
+## Leaderboard row
+
+```tsx
+/** rank · logo · name + detail · value · delta pill that says what it compares. */
+<li className="grid grid-cols-[1.5rem_2rem_1fr_auto_auto] items-center gap-3 py-2">
+  <span className="text-xs text-ink-2 tnum">{rank}</span>
+  <img src={logo} alt="" className="size-7 rounded-md" />
+  <span className="min-w-0"><span className="block truncate">{name}</span><span className="block truncate text-xs text-ink-2">{detail}</span></span>
+  <span className="text-right tnum">{compact.format(value)}</span>
+  {isNew ? <span className="rounded-full bg-ink/8 px-2 text-xs">new</span> : <Delta cur={value} prev={prev} vs="wk" />}
+</li>
+```
+
+## Chart annotations
+
+```tsx
+/** Thin rule at the moment, a 2–3 word pill at the top; the full note in the tooltip. `x` maps a date to px. */
+{notes.slice(0, 5).map(n => (
+  <g key={n.at} transform={`translate(${x(n.at)},0)`}>
+    <line y1={18} y2={plotHeight} className="stroke-ink/25" strokeDasharray="2 3" />
+    <foreignObject x={-40} y={0} width={80} height={18}>
+      <span className="mx-auto block w-fit rounded-full bg-ink/8 px-1.5 text-[10px] leading-[18px]" data-tip={n.note}>{n.label}</span>
+    </foreignObject>
+  </g>
+))}
+```

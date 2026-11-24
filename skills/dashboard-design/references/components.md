@@ -208,6 +208,82 @@ For: a total split into a few ordered parts (debt by age, tickets by priority).
   hue's intensities ending in the warning or danger hue.
 - Legend under it: swatch, short label, amount; the share and exact amount in each segment's tooltip.
 
+## Funnel
+
+For: the share of people who reach each step of one flow (visit → sign up → activate → pay).
+
+- Horizontal steps as one row of bars of the same height, widths = the share of step 1 that reached the step; each
+  step's label above, its count and its % of step 1 under it. Never a trapezoid "funnel" shape: the slanted edges
+  distort the ratios.
+- Between two steps, the drop as a small grey chip ("−62%"). The step whose drop is worst against its own normal
+  takes the warm colour and the action ("see who dropped").
+- Compare a period with a grey ghost bar behind each step, not a second coloured funnel.
+- Five steps at most on screen; more steps means two flows.
+
+## Cohort retention grid
+
+For: whether newer users stay as well as older ones (signup week × weeks since signup).
+
+- Rows = cohorts (newest at the bottom), columns = week 0…N, each cell the % still active; row label with the
+  cohort's size ("Nov 10 · 412"). The triangle stays a triangle: future cells are blank, never 0%.
+- Sequential tiers of one hue, darker = more retained; here high is good, so the problem is the pale cells. Mark a
+  cohort below the median cohort at the same week with the warm cue on its row label, not by recolouring the grid.
+- A bottom row "median" in ink-2 makes every cohort comparable at a glance.
+
+## Map (choropleth)
+
+For: questions about place only (traffic by country, outages, deliveries). Otherwise a ranked list with flags.
+
+- One sequential scale, palest = least, with a legend inside the map card (two to five classed steps reads faster
+  than a continuous ramp). Grey for no data, never the lightest data colour.
+- Events on top as markers of another shape and hue (triangles for outages), each in the legend.
+- A ranked country list beside or under the map with the same numbers; the map is the overview, the list is exact.
+- Small countries vanish on a world map: if a small place matters, the list carries it.
+
+## Uptime bars
+
+For: up/down history per service (status pages, cron jobs, integrations).
+
+- One row per service: name, a row of thin daily bars (45 or 90 days), the uptime % at the right, "N days ago" and
+  "today" under the row.
+- Healthy days grey or a quiet green; only degraded (amber) and down (red) days take strong colour, with the
+  incident in the tooltip. The overall state goes in one banner above all rows.
+- The open incident sits above the bars as a card: title, state word, updates newest first, each with its time.
+
+## Goal progress
+
+For: "will we hit the number by the date?" (monthly revenue goal, signups for a launch).
+
+- A bullet graph (above) with the target line, plus a dashed projected segment from today's pace to the period end.
+- One line of facts beside it: "$7.2k of $10k · 18 days left · on pace for $9.1k". The pace number is the warning
+  when it falls short.
+
+## Comparison table
+
+For: the same metrics across a few entities or two periods (plans, regions, this month vs last).
+
+- Entities as columns (two to five), metrics as rows; the best value per row in ink weight, others ink-2; no
+  rainbow cell fills.
+- Period comparison: current, previous, delta columns, deltas coloured by meaning (lower-is-better flips).
+- Sticky first column and header on scroll; right-aligned tabular numbers.
+
+## Leaderboard row
+
+For: ranked entities that move (models, products, customers, reps, stocks).
+
+- Row: rank (muted), logo or letter avatar, name with one muted detail (provider, plan), value, delta pill, and an
+  optional sparkline. Two columns of 5 on desktop; one column on phones.
+- The delta pill says what it compares ("↑9% wk"); a new entry shows "new", not "↑∞%".
+- Past ten rows, "Show more" rather than a longer page.
+
+## Chart annotations
+
+For: explaining a spike without a sentence ("HN post", "price change", "outage").
+
+- A thin vertical line at the moment with a 2–3 word label in a small pill at the top of the plot; the full note in
+  the tooltip. Up to five per chart; a toggle ("Annotations") when there are more.
+- Annotations come from data (deploys, posts, incidents, campaign starts), never typed into the chart by hand.
+
 ## Tables and recent activity
 
 - Hairline row separators, muted date column, right-aligned amounts, small source chips with favicons.
