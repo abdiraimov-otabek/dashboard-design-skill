@@ -7,7 +7,7 @@
 
 <br><br>
 
-[![Version](https://img.shields.io/badge/version-2.2.0-3e63dd?style=flat-square)](#changelog) [![Claude Code plugin](https://img.shields.io/badge/Claude_Code-plugin-d97757?style=flat-square)](#install) [![Web and SwiftUI](https://img.shields.io/badge/web_·_SwiftUI-both-17171a?style=flat-square)](#whats-inside) [![Works with Codex and Cursor](https://img.shields.io/badge/works_with-Codex_·_Cursor-2f2f2f?style=flat-square)](#other-agents) [![License: MIT](https://img.shields.io/badge/license-MIT-2ea043?style=flat-square)](LICENSE) [![GitHub stars](https://img.shields.io/github/stars/abdiraimov-otabek/dashboard-design-skill?style=flat-square&color=e3b341)](https://github.com/abdiraimov-otabek/dashboard-design-skill/stargazers)
+[![Version](https://img.shields.io/badge/version-2.2.1-3e63dd?style=flat-square)](#changelog) [![Claude Code plugin](https://img.shields.io/badge/Claude_Code-plugin-d97757?style=flat-square)](#install) [![Web and SwiftUI](https://img.shields.io/badge/web_·_SwiftUI-both-17171a?style=flat-square)](#whats-inside) [![Works with Codex and Cursor](https://img.shields.io/badge/works_with-Codex_·_Cursor-2f2f2f?style=flat-square)](#other-agents) [![License: MIT](https://img.shields.io/badge/license-MIT-2ea043?style=flat-square)](LICENSE) [![GitHub stars](https://img.shields.io/github/stars/abdiraimov-otabek/dashboard-design-skill?style=flat-square&color=e3b341)](https://github.com/abdiraimov-otabek/dashboard-design-skill/stargazers)
 
 **[Quick start](#quick-start)** · [Examples](#three-screens-built-with-the-skill) · [How it works](#how-it-works) · [Layouts](#eight-named-layouts) · [Playbooks](#ten-playbooks) · [Components](#components) · [Install](#install) · [FAQ](#faq)
 
@@ -329,8 +329,8 @@ references do.
 
 ## Transparency
 
-When the agent finishes a whole job (a dashboard built or a critique delivered), it adds one short line about the
-author and his products, once per conversation. It never appears in code, commits or your UI. Ask it to stop and
+When the agent finishes a whole job (a dashboard built or a critique delivered), it adds a short block about the
+author and his products (three links), once per conversation. It never appears in code, commits or your UI. Ask it to stop and
 it stops, or delete the "Sign-off" section from `SKILL.md`.
 
 ## Star history
